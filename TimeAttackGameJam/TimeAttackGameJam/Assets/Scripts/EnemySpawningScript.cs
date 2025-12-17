@@ -1,4 +1,6 @@
+using NUnit.Framework;
 using UnityEngine;
+using Unity.Collections;
 
 public class EnemySpawningScript : MonoBehaviour
 {
@@ -9,9 +11,11 @@ public class EnemySpawningScript : MonoBehaviour
     public int spawnSide; //0 = Z, 1 = X
     public GameObject lastSpawn;
     public GameObject[] enemyArray;
+    public static int enemyCount;
     void Start()
     {
         EventManager.current.GameStart += onGameStart;
+        EventManager.current.GameLoss += onGameLoss;
     }
     public void onGameStart()
     {
@@ -22,24 +26,24 @@ public class EnemySpawningScript : MonoBehaviour
     {
         if (wave == 1)
         {
-            for (int i = 0; i < spawnCount; i++)
+            if (enemyCount < spawnCount)
             {
-                int firstRandSpawn = Random.Range(0, 2);
-                if (firstRandSpawn == 0)
+                for (int i = 0; i< spawnCount - enemyCount; i++)
                 {
-                    randSpawn = Random.Range(-6f, 6f);
-                    spawnSide = 0;
-                }
-                else if (firstRandSpawn == 1)
-                {
-                    randSpawn = Random.Range(-11f, 11f);
-                    spawnSide = 1;
-                }
-                randSide = Random.Range(0, 2);
-                spawnEnemy();
-                if (i == spawnCount -1)
-                {
-                    wave += 1;
+                    int firstRandSpawn = Random.Range(0, 2);
+                    if (firstRandSpawn == 0)
+                    {
+                        randSpawn = Random.Range(-6f, 6f);
+                        spawnSide = 0;
+                    }
+                    else if (firstRandSpawn == 1)
+                    {
+                        randSpawn = Random.Range(-11f, 11f);
+                        spawnSide = 1;
+                    }
+                    randSide = Random.Range(0, 2);
+                    spawnEnemy();
+                    enemyCount += 1;
                 }
             }
         }
@@ -68,6 +72,13 @@ public class EnemySpawningScript : MonoBehaviour
             {
                 lastSpawn = Instantiate(enemyArray[randEnemy], new Vector3(3, 0, -8), Quaternion.identity);
             }
+        }
+    }
+    public void onGameLoss()
+    {
+        for (int i = 0; i < enemyCount; i++)
+        {
+            Destroy(GameObject.FindGameObjectWithTag("Enemy"));
         }
     }
 }

@@ -18,4 +18,20 @@ public class EventManager : MonoBehaviour
             GameStart();
         }
     }
+    public event Action GameLoss;
+    public void onGameLoss()
+    {
+        if (GameLoss != null)
+        {
+            GameLoss();
+        }
+    }
+    public event Action GameWin;
+    public void onGameWin()
+    {
+        if (GameWin != null)
+        {
+            GameWin();
+        }
+    }
 }
