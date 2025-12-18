@@ -398,7 +398,8 @@ MonoBehaviour:
   powerUpArray:
   - {fileID: 5357703938044096596, guid: 58e4289f5c3fc034785d57737c685d21, type: 3}
   - {fileID: 4210341823627038833, guid: ec0b976a9aa77154abb50d5c3c23bb93, type: 3}
-  lastSpawn: {fileID: 0}
+  lastSpawn:
+  - {fileID: 0}
   randX: 0
   randY: 0
   randLocation: {x: 0, y: 0, z: 0}

@@ -3,9 +3,9 @@ using UnityEngine;
 public class PowerUpScript : MonoBehaviour
 {
     [Header("Spawner Information")]
-    [SerializeField] bool hasSpawned;
+    [SerializeField] bool hasSpawned = false;
     [SerializeField] GameObject[] powerUpArray;
-    [SerializeField] GameObject lastSpawn;
+    public GameObject[] lastSpawn;
 
     [Header("Spawner Randomisation")]
     [SerializeField] float randX;
@@ -18,7 +18,7 @@ public class PowerUpScript : MonoBehaviour
     
     void Start()
     {
-        EventManager.current.GameStart += onGameStart;
+        //EventManager.current.GameStart += onGameStart;
     }
 
     public void onGameStart()
@@ -29,17 +29,24 @@ public class PowerUpScript : MonoBehaviour
 
     void Update()
     {
-        if (!hasSpawned)
+        if (hasSpawned == false)
         {
-            SpawnPowerUp();
+            Debug.Log("Cycle Begins");
+            SpawnCycle();
         }
 
-
-        if (hasSpawned)
+        if (lastSpawn == null)
         {
+
+
+            Debug.Log("Cooldown Begins");
             SpawnCooldown();
         }
+    }
 
+    void SpawnCycle()
+    {
+        SpawnPowerUp();
 
     }
 
@@ -51,7 +58,7 @@ public class PowerUpScript : MonoBehaviour
         randLocation = new Vector3(randY, 0, randX);
 
         int randPower = Random.Range(0, powerUpArray.Length);
-        Instantiate(powerUpArray[randPower], randLocation, Quaternion.identity);
+        lastSpawn[0] = Instantiate(powerUpArray[randPower], randLocation, Quaternion.identity);
 
         hasSpawned = true;
     }
