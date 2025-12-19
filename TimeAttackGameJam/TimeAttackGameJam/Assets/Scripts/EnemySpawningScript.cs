@@ -5,7 +5,8 @@ using Unity.Collections;
 public class EnemySpawningScript : MonoBehaviour
 {
     public int wave;
-    public int spawnCount;
+    public static int startSpawnCount;
+    public static int spawnCount;
     public float randSpawn;
     public int randSide; //0 = left, 1 = right, 0 = top, 1 = bottom
     public int spawnSide; //0 = Z, 1 = X
@@ -22,11 +23,11 @@ public class EnemySpawningScript : MonoBehaviour
     public void onGameStart()
     {
         wave = 1;
-        spawnCount = 10;
+        startSpawnCount = 10;
     }
     void Update()
     {
-        if (wave > 0)
+        if (wave > 0 && newWave != true)
         {
             if (enemyCount < spawnCount)
             {
@@ -90,7 +91,7 @@ public class EnemySpawningScript : MonoBehaviour
         wave += 1;
         newWave = true;
         enemyCount = 0;
-        spawnCount = 10 + ((wave - 1) * 5);
+        startSpawnCount = 10 + ((wave - 1) * 5);
     }
     public void onGameLoss()
     {

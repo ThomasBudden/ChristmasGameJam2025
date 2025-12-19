@@ -42,5 +42,6 @@ public class TimerScript : MonoBehaviour
         {
             EventManager.current.onGameWin();
         }
+        EnemySpawningScript.spawnCount = Mathf.CeilToInt(EnemySpawningScript.startSpawnCount + (Time.time - startTime)/2);
     }
 }

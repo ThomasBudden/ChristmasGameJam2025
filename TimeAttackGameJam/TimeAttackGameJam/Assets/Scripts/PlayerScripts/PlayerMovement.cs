@@ -15,7 +15,22 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] GameObject bullet;
     [SerializeField] Transform firingPoint;
     [SerializeField] Vector3 mousePos;
-    
+    public bool canShoot;
+    private void Start()
+    {
+        EventManager.current.GameStart += onGameStart;
+        EventManager.current.GameLoss += onGameLoss;
+    }
+    public void onGameStart()
+    {
+        this.transform.position = new Vector3(0, 0.5f, 0);
+        canShoot = true;
+    }
+    public void onGameLoss()
+    {
+        this.transform.position = new Vector3(0, 0.5f, 0);
+        canShoot = false;
+    }
 
 
     private void Update()
@@ -35,6 +50,22 @@ public class PlayerMovement : MonoBehaviour
         moveInput.Normalize();
 
         rb.linearVelocity = new Vector3(moveInput.x * speed , 0 , moveInput.y * speed);
+        if (this.transform.position.x >= 10.5f)
+        {
+            rb.linearVelocity = new Vector3(-10, 0, 0);
+        }
+        else if (this.transform.position.x <= -10.5f)
+        {
+            rb.linearVelocity = new Vector3(10, 0, 0);
+        }
+        else if (this.transform.position.z >= 6f)
+        {
+            rb.linearVelocity = new Vector3(0, 0, -10);
+        }
+        else if (this.transform.position.z <= -6f)
+        {
+            rb.linearVelocity = new Vector3(0, 0, 10);
+        }
     }
 
     void HandleAiming()
@@ -58,7 +89,7 @@ public class PlayerMovement : MonoBehaviour
     void HandleShooting()
     {
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && canShoot == true) 
         {
             Debug.Log("Fire");
 
