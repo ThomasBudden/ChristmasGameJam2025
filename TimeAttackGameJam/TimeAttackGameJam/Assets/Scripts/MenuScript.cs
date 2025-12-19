@@ -5,12 +5,14 @@ public class MenuScript : MonoBehaviour
     public GameObject mainMenu;
     public GameObject gameOverPanel;
     public GameObject creditsPanel;
+    public GameObject winPanel;
     public float startTime;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         mainMenu.SetActive(true);
         EventManager.current.GameLoss += onGameLoss;
+        EventManager.current.GameWinWin += onGameWinWin;
     }
     public void OnPressPlay()
     {
@@ -35,6 +37,13 @@ public class MenuScript : MonoBehaviour
     public void onExitButtonPressed()
     {
         Application.Quit();
+    }
+    public void onGameWinWin()
+    {
+        mainMenu.SetActive(false);
+        creditsPanel.SetActive(false);
+        gameOverPanel.SetActive(false);
+        winPanel.SetActive(true);
     }
 
     private void Update()

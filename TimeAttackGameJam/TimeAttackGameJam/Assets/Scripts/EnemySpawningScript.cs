@@ -21,6 +21,7 @@ public class EnemySpawningScript : MonoBehaviour
         EventManager.current.GameStart += onGameStart;
         EventManager.current.GameWin += onGameWin;
         EventManager.current.GameLoss += onGameLoss;
+        EventManager.current.GameWinWin += onGameWinWin;
     }
     public void onGameStart()
     {
@@ -29,7 +30,7 @@ public class EnemySpawningScript : MonoBehaviour
     }
     void Update()
     {
-        if (wave > 0 && newWave != true)
+        if (wave > 0  && wave < 4 && newWave != true)
         {
             if (enemyCount < spawnCount)
             {
@@ -101,6 +102,11 @@ public class EnemySpawningScript : MonoBehaviour
         wave = 0;
         newWave = true;
         enemyCount = 0;
+        waveTxt.text = wave.ToString();
+    }
+    public void onGameWinWin()
+    {
+        newWave = true;
         waveTxt.text = wave.ToString();
     }
 }

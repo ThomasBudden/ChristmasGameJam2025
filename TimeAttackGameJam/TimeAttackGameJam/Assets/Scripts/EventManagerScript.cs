@@ -34,4 +34,12 @@ public class EventManager : MonoBehaviour
             GameWin();
         }
     }
+    public event Action GameWinWin;
+    public void onGameWinWin()
+    {
+        if (GameWinWin != null)
+        {
+            GameWinWin();
+        }
+    }
 }
