@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 3
   tags:
   - PlayerBullet
+  - PowerUpOne
+  - PowerUpTwo
+  - PowerManager
   - Enemy
   layers:
   - Default
