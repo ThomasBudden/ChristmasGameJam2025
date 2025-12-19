@@ -206,7 +206,7 @@ Transform:
   m_GameObject: {fileID: 694915153}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 11.81, z: -0}
+  m_LocalPosition: {x: 0, y: 19.59, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -377,7 +377,7 @@ GameObject:
   - component: {fileID: 1252739558}
   m_Layer: 0
   m_Name: PowerUpManager
-  m_TagString: Untagged
+  m_TagString: PowerManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -398,8 +398,7 @@ MonoBehaviour:
   powerUpArray:
   - {fileID: 5357703938044096596, guid: 58e4289f5c3fc034785d57737c685d21, type: 3}
   - {fileID: 4210341823627038833, guid: ec0b976a9aa77154abb50d5c3c23bb93, type: 3}
-  lastSpawn:
-  - {fileID: 0}
+  lastSpawn: {fileID: 0}
   randX: 0
   randY: 0
   randLocation: {x: 0, y: 0, z: 0}
@@ -427,6 +426,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 30264658564991981, guid: 570bbbd3d8ac3474ebb0a8e22ec191dd, type: 3}
+      propertyPath: duration
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1290482366244399765, guid: 570bbbd3d8ac3474ebb0a8e22ec191dd, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.41

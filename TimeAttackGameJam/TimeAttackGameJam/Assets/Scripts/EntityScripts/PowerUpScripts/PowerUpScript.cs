@@ -31,7 +31,7 @@ public class PowerUpScript : MonoBehaviour
     {
         if (hasSpawned == false)
         {
-            Debug.Log("Cycle Begins");
+            //Debug.Log("Cycle Begins");
             SpawnCycle();
         }
 
@@ -39,7 +39,7 @@ public class PowerUpScript : MonoBehaviour
         {
 
 
-            Debug.Log("Cooldown Begins");
+            //Debug.Log("Cooldown Begins");
             SpawnCooldown();
         }
     }
@@ -69,6 +69,7 @@ public class PowerUpScript : MonoBehaviour
         if (cooldownTimer <= 0)
         {
             hasSpawned = false;
+            cooldownTimer = 3;
         }
 
     }
