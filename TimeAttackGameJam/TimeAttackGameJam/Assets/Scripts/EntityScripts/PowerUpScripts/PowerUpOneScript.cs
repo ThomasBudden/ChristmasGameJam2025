@@ -8,6 +8,8 @@ public class PowerUpOneScript : MonoBehaviour
     [SerializeField] PowerUpScript lastSpawnList;
     [SerializeField] GameObject powerManager;
 
+    [SerializeField] bool isDestroyed = false;
+
     private void Start()
     {
         powerManager = GameObject.FindWithTag("PowerManager");
@@ -21,7 +23,7 @@ public class PowerUpOneScript : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-
+            
             Destroy(gameObject);
 
         }
@@ -30,8 +32,13 @@ public class PowerUpOneScript : MonoBehaviour
 
     private void OnDestroy()
     {
-        GameObject.Destroy(lastSpawnList.lastSpawn);
-        
-    }
+        if (!isDestroyed)
+        {
+           lastSpawnList.lastSpawn = null;
+           isDestroyed = true;
+       }
+       
+
+   }
 
 }

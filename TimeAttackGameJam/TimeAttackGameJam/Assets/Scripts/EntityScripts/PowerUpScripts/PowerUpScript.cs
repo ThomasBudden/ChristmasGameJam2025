@@ -53,8 +53,8 @@ public class PowerUpScript : MonoBehaviour
 
     void SpawnPowerUp()
     {
-        randY = Random.Range(-6f, 6f);
-        randX = Random.Range(-11f, 11f);
+        randY = Random.Range(-3, 3f);
+        randX = Random.Range(-5f, 5f);
         randLocation = new Vector3(randY, 0, randX);
 
         int randPower = Random.Range(0, powerUpArray.Length);
