@@ -4,18 +4,39 @@ using UnityEngine.AI;
 public class EnemyNavScript : MonoBehaviour
 {
     public GameObject player;
-    private NavMeshAgent agent;
+    public NavMeshAgent agent;
     private Vector3 target;
     public float health;
+
+    public bool canChase = true;
+    [SerializeField] GameObject effects;
+
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         agent = this.gameObject.GetComponent<NavMeshAgent>();
+        effects = GameObject.FindGameObjectWithTag("Player");
     }
     void Update()
     {
         target = player.transform.position;
-        agent.SetDestination(target);
+
+        if (effects.GetComponent<PowerUpEffects>().shockwaveActivated == true)
+        {
+            canChase = false;
+        }
+
+
+        if (effects.GetComponent<PowerUpEffects>().shockwaveActivated == false)
+        {
+            canChase = true;
+        }
+
+        if (canChase)
+        {
+            agent.SetDestination(target);
+        }
+
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -28,7 +49,7 @@ public class EnemyNavScript : MonoBehaviour
         }
         if (other.tag == "Player")
         {
-            EventManager.current.onGameLoss();
+            //EventManager.current.onGameLoss();
         }
     }
 }

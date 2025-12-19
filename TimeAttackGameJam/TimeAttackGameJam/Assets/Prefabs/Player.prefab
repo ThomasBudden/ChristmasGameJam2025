@@ -171,10 +171,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bcbd6286869a0d47a5896594acc5239, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AOE: 0
-  force: 0
-  duration: 0
+  shDuration: 2
+  shockwaveActivated: 0
+  inDuration: 3
   hitbox: {fileID: 2771897921115062745}
+  isInvincible: 0
 --- !u!1 &6854007263742890449
 GameObject:
   m_ObjectHideFlags: 0

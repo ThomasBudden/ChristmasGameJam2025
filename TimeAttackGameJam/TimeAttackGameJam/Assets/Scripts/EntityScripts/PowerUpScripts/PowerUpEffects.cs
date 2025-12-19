@@ -4,39 +4,57 @@ public class PowerUpEffects : MonoBehaviour
 {
 
     [Header("Shockwave")]
-    [SerializeField] float AOE;
-    [SerializeField] float force;
+    public float shDuration;
+    public bool shockwaveActivated;
+    
+    
 
     [Header("Invincibility")]
-    [SerializeField] float duration;
+    [SerializeField] float inDuration;
     [SerializeField] Collider hitbox;
     [SerializeField] bool isInvincible;
 
+
+    private void Start()
+    {
+       
+    }
 
     private void Update()
     {
         if (isInvincible == true)
         {
-            duration -= Time.deltaTime;
-            if (duration <= 0)
+            inDuration -= Time.deltaTime;
+            if (inDuration <= 0)
             {
                 hitbox.enabled = true;
                 isInvincible = false;
-                duration = 2;  
+                inDuration = 2;  
+            }
+        }
+
+        if (shockwaveActivated == true)
+        {
+            shDuration -= Time.deltaTime;
+            if (shDuration <= 0)
+            {
+                
+                shockwaveActivated = false;
+                shDuration = 2;
             }
         }
     }
 
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.tag == "PowerUpOne")
+        if (other.gameObject.tag == "PowerUpOne")
         {
             ShockWave();
             Debug.Log("Trigger Shockwave");
         }
 
-        if (collision.gameObject.tag == "PowerUpTwo")
+        if (other.gameObject.tag == "PowerUpTwo")
         {
             Invincibility();
             Debug.Log("Trigger Invincibility");
@@ -46,6 +64,7 @@ public class PowerUpEffects : MonoBehaviour
 
     void ShockWave()
     {
+       shockwaveActivated = true;
 
     }
 
