@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using UnityEngine;
 using Unity.Collections;
+using TMPro;
 
 public class EnemySpawningScript : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class EnemySpawningScript : MonoBehaviour
     public GameObject[] enemyArray;
     [SerializeField] public static int enemyCount;
     public bool newWave;
+    public TMP_Text waveTxt;
     void Start()
     {
         EventManager.current.GameStart += onGameStart;
@@ -92,11 +94,13 @@ public class EnemySpawningScript : MonoBehaviour
         newWave = true;
         enemyCount = 0;
         startSpawnCount = 10 + ((wave - 1) * 5);
+        waveTxt.text = wave.ToString();
     }
     public void onGameLoss()
     {
         wave = 0;
         newWave = true;
         enemyCount = 0;
+        waveTxt.text = wave.ToString();
     }
 }
