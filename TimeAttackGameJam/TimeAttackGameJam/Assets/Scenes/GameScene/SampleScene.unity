@@ -2349,6 +2349,59 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1483392778}
   m_CullTransparentMesh: 1
+--- !u!1 &1560516043
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1560516044}
+  - component: {fileID: 1560516045}
+  m_Layer: 0
+  m_Name: PowerUpManager
+  m_TagString: PowerManager
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1560516044
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1560516043}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 9.02071, y: 0, z: 1.69502}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1560516045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1560516043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42123477565944a49a58a57945f02727, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hasSpawned: 0
+  powerUpArray:
+  - {fileID: 5357703938044096596, guid: 58e4289f5c3fc034785d57737c685d21, type: 3}
+  - {fileID: 4210341823627038833, guid: ec0b976a9aa77154abb50d5c3c23bb93, type: 3}
+  lastSpawn: {fileID: 0}
+  randX: 0
+  randY: 0
+  randLocation: {x: 0, y: 0, z: 0}
+  cooldownTimer: 3
 --- !u!1 &1578254787
 GameObject:
   m_ObjectHideFlags: 0
@@ -2696,3 +2749,4 @@ SceneRoots:
   - {fileID: 715076168}
   - {fileID: 530349556979362819}
   - {fileID: 580271739}
+  - {fileID: 1560516044}

@@ -49,7 +49,7 @@ public class EnemyNavScript : MonoBehaviour
         }
         if (other.tag == "Player")
         {
-            //EventManager.current.onGameLoss();
+            EventManager.current.onGameLoss();
         }
     }
 }
