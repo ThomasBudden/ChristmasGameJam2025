@@ -7,10 +7,15 @@ public class MenuScript : MonoBehaviour
     void Start()
     {
         mainMenu.SetActive(true);
+        EventManager.current.GameLoss += onGameLoss;
     }
     public void OnPressPlay()
     {
         EventManager.current.onGameStart();
         mainMenu.SetActive(false);
+    }
+    public void onGameLoss()
+    {
+        mainMenu.SetActive(true);
     }
 }
