@@ -5,7 +5,7 @@ public class PowerUpScript : MonoBehaviour
     [Header("Spawner Information")]
     [SerializeField] bool hasSpawned = false;
     [SerializeField] GameObject[] powerUpArray;
-    public GameObject[] lastSpawn;
+    public GameObject lastSpawn;
 
     [Header("Spawner Randomisation")]
     [SerializeField] float randX;
@@ -58,7 +58,7 @@ public class PowerUpScript : MonoBehaviour
         randLocation = new Vector3(randY, 0, randX);
 
         int randPower = Random.Range(0, powerUpArray.Length);
-        lastSpawn[0] = Instantiate(powerUpArray[randPower], randLocation, Quaternion.identity);
+        lastSpawn = Instantiate(powerUpArray[randPower], randLocation, Quaternion.identity);
 
         hasSpawned = true;
     }

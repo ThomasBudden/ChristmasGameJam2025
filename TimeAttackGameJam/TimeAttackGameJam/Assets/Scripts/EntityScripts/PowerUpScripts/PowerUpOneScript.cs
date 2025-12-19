@@ -30,7 +30,7 @@ public class PowerUpOneScript : MonoBehaviour
 
     private void OnDestroy()
     {
-        GameObject.Destroy(lastSpawnList.lastSpawn[0]);
+        GameObject.Destroy(lastSpawnList.lastSpawn);
         
     }
 
