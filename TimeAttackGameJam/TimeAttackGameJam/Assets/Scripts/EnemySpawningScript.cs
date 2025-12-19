@@ -11,20 +11,22 @@ public class EnemySpawningScript : MonoBehaviour
     public int spawnSide; //0 = Z, 1 = X
     public GameObject lastSpawn;
     public GameObject[] enemyArray;
-    public static int enemyCount;
+    [SerializeField] public static int enemyCount;
+    public bool newWave;
     void Start()
     {
         EventManager.current.GameStart += onGameStart;
+        EventManager.current.GameWin += onGameWin;
         EventManager.current.GameLoss += onGameLoss;
     }
     public void onGameStart()
     {
         wave = 1;
-        spawnCount = 5;
+        spawnCount = 10;
     }
     void Update()
     {
-        if (wave == 1)
+        if (wave > 0)
         {
             if (enemyCount < spawnCount)
             {
@@ -45,6 +47,15 @@ public class EnemySpawningScript : MonoBehaviour
                     spawnEnemy();
                     enemyCount += 1;
                 }
+            }
+        }
+        Debug.Log(enemyCount);
+        if (newWave == true)
+        {
+            Destroy(GameObject.FindGameObjectWithTag("Enemy"));
+            if (GameObject.FindGameObjectWithTag("Enemy") == null)
+            {
+                newWave = false;
             }
         }
     }
@@ -74,11 +85,17 @@ public class EnemySpawningScript : MonoBehaviour
             }
         }
     }
+    public void onGameWin()
+    {
+        wave += 1;
+        newWave = true;
+        enemyCount = 0;
+        spawnCount = 10 + ((wave - 1) * 5);
+    }
     public void onGameLoss()
     {
-        for (int i = 0; i < enemyCount; i++)
-        {
-            Destroy(GameObject.FindGameObjectWithTag("Enemy"));
-        }
+        wave = 0;
+        newWave = true;
+        enemyCount = 0;
     }
 }

@@ -26,7 +26,7 @@ public class EnemyNavScript : MonoBehaviour
             EnemySpawningScript.enemyCount -= 1;
             TimerScript.maxTime += 5;
         }
-        if (other.tag == "Player" && Time.time >= 5)
+        if (other.tag == "Player")
         {
             EventManager.current.onGameLoss();
         }

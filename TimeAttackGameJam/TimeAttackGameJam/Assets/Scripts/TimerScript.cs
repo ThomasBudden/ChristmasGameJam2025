@@ -23,7 +23,9 @@ public class TimerScript : MonoBehaviour
     }
     public void onGameWin()
     {
-
+        maxTime = 30;
+        startTimer = true;
+        startTime = Time.time;
     }
     public void onGameLoss()
     {
